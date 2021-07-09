@@ -1,12 +1,9 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/kyokomi/emoji"
 )
 
 func main() {
-	fmt.Println("hello world")
-	emoji.Println(":face_with_monocle:")
+	emoji.Println("hello world:face_with_monocle:")
 }
