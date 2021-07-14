@@ -1,5 +1,7 @@
 package fibbfunction
 
+//couting and printing fibbonachi numbers
+
 import "fmt"
 
 func fibbfunction() func() int {

@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"knocker/task2/fibbfunction"
+
+	"github.com/egor200201/golanghomework/task2/fibbfunction"
 )
 
 func main() {
