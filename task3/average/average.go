@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	a := [6]int{1, 2, 3, 4, 5, 6}
-	fmt.Println(Average(a))
+	fmt.Println("average of array:", Average(a))
 }
 
 func Average(a [6]int) float64 {

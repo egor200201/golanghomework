@@ -2,12 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
-
-	elements := [...]int64{1, 2, 5, 15}
-
-	fmt.Println("Before : ", elements)
-
+func rev(elements []int64) []int64 {
 	reversed := []int64{}
 
 	for i := range elements {
@@ -16,6 +11,11 @@ func main() {
 		reversed = append(reversed, n)
 	}
 
-	fmt.Println("After : ", reversed)
-
+	return reversed
+}
+func main() {
+	elements := []int64{1, 2, 5, 15}
+	fmt.Println("reverse oder")
+	fmt.Println("Before : ", elements)
+	fmt.Println("After : ", rev(elements))
 }

@@ -13,5 +13,6 @@ func max(str []string) string {
 }
 func main() {
 	str := []string{"one", "two", "three"}
-	fmt.Println(max(str))
+	fmt.Println(" the longest word from the slice of strings (the first if there are more than one)")
+	fmt.Print(max(str))
 }
