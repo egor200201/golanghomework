@@ -43,14 +43,14 @@ func (c Circle) String() string {
 
 func (c Circle) Area() (float64, error) {
 	if c.radius <= 0 {
-		return 0, errors.New("cant calculate the values for circle")
+		return 0, errors.New("wrong values for circle")
 	}
 	return c.radius * c.radius * math.Pi, nil
 }
 
 func (c Circle) Perimeter() (float64, error) {
 	if c.radius <= 0 {
-		return 0, errors.New("cant calculate the values for circle")
+		return 0, errors.New("wrong values for circle")
 	}
 	return 2 * math.Pi * c.radius, nil
 }
@@ -62,14 +62,14 @@ func (r Rectangle) String() string {
 
 func (r Rectangle) Area() (float64, error) {
 	if (r.height <= 0) || (r.width <= 0) {
-		return 0, errors.New("cant calculate the values for rectangle")
+		return 0, errors.New("wrong values for rectangle")
 	}
 	return r.width * r.height, nil
 }
 
 func (r Rectangle) Perimeter() (float64, error) {
 	if (r.height <= 0) || (r.width <= 0) {
-		return 0, errors.New("cant calculate the values for rectangle")
+		return 0, errors.New("wrong values for rectangle")
 	}
 	return 2 * (r.width + r.height), nil
 }
