@@ -33,6 +33,7 @@ func TestCircle_Area(t *testing.T) {
 			got, err := tt.c.Area()
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Circle.Area() error = %v, wantErr %v", err, tt.wantErr)
+
 				return
 			}
 			if got != tt.want {
@@ -173,6 +174,46 @@ func TestRectangle_Perimeter(t *testing.T) {
 			}
 			if got != tt.want {
 				t.Errorf("Rectangle.Perimeter() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+func TestCircle_String(t *testing.T) {
+	tests := []struct {
+		name string
+		c    Circle
+		want string
+	}{
+		{
+			name: "usual",
+			c:    Circle{2},
+			want: "Cirlce: radius 2.000000",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.c.String(); got != tt.want {
+				t.Errorf("Circle.String() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+func TestRectangle_String(t *testing.T) {
+	tests := []struct {
+		name string
+		r    Rectangle
+		want string
+	}{
+		{
+			name: "regular",
+			r:    Rectangle{2, 2},
+			want: "Rectangle with height 2.000000 and width 2.000000",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.r.String(); got != tt.want {
+				t.Errorf("Rectangle.String() = %v, want %v", got, tt.want)
 			}
 		})
 	}
