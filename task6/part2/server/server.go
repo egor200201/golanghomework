@@ -9,9 +9,9 @@ import (
 	"strings"
 )
 
+const port = 8081
+
 func main() {
-	// server port number
-	const port = 8081
 
 	fmt.Printf("Launching server on port: %d \n\n", port)
 

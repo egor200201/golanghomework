@@ -33,8 +33,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%s\n", njson)
 }
 
+const port = 8080
+
 func main() {
-	const port = 8080
 
 	fmt.Print("port number:", port)
 

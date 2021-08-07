@@ -32,9 +32,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+const port = 8080
+
 func main() {
 	// server port number
-	const port = 8080
 
 	fmt.Printf("Launching server on port: %d \n\n", port)
 
