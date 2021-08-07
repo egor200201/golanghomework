@@ -8,15 +8,10 @@ import (
 )
 
 type Info struct {
-	Host       string `json:"host"`
-	UserAgent  string `json:"user_agent"`
-	RequestURI string `json:"request_uri"`
-	Header     Header `json:"headers"`
-}
-
-type Header struct {
-	Accept    []string `json:"Accept"`
-	UserAgent []string `json:"User-Agent"`
+	Host       string      `json:"host"`
+	UserAgent  string      `json:"user_agent"`
+	RequestURI string      `json:"request_uri"`
+	Header     http.Header `json:"headers"`
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -24,12 +19,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		Host:       r.Host,
 		UserAgent:  r.UserAgent(),
 		RequestURI: r.RequestURI,
-		Header: Header{
-			Accept:    r.Header["Accept"],
-			UserAgent: r.Header["User-Agent"],
-		},
+		Header:     r.Header,
 	}
 	njson, _ := json.Marshal(info)
+	//	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	fmt.Fprintf(w, "%s\n", njson)
 }
 
