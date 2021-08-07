@@ -15,16 +15,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	switch r.Method {
 	case http.MethodGet:
-		body, _ := ioutil.ReadFile("../server/page/page.html")
+		body, _ := ioutil.ReadFile("C:/Users/Егор/Desktop/golanghomework/task6/part3/page/page.html")
 		fmt.Fprint(w, string(body))
-
 	case http.MethodPost:
 		cookie := http.Cookie{
 			Name:  "token",
 			Value: r.PostFormValue("name") + ":" + r.PostFormValue("address"),
 		}
 		http.SetCookie(w, &cookie)
-		body, _ := ioutil.ReadFile("../server/page/page.html")
+		body, _ := ioutil.ReadFile("C:/Users/Егор/Desktop/golanghomework/task6/part3/page/page.html")
 		fmt.Fprint(w, string(body))
 
 	default:
