@@ -22,7 +22,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		Header:     r.Header,
 	}
 	njson, _ := json.Marshal(info)
-	//	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	fmt.Fprintf(w, "%s\n", njson)
 }
 
