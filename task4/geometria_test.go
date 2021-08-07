@@ -187,7 +187,7 @@ func TestCircle_String(t *testing.T) {
 		{
 			name: "usual",
 			c:    Circle{2},
-			want: "Cirlce: radius 2.000000",
+			want: "Cirlce : radius 2.000000",
 		},
 	}
 	for _, tt := range tests {
