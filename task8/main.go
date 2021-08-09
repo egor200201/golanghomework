@@ -35,7 +35,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	switch r.Method {
 	case http.MethodGet:
-		body, _ := ioutil.ReadFile("C:/Users/Егор/Desktop/golanghomework/task8/page.html")
+		body, _ := ioutil.ReadFile("page.html")
 		fmt.Fprint(w, string(body))
 	case http.MethodPost:
 		cookie := http.Cookie{
