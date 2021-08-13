@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 )
 
 type Fetcher interface {
@@ -9,16 +10,36 @@ type Fetcher interface {
 	// a slice of URLs found on that page.
 	Fetch(url string) (body string, urls []string, err error)
 }
+type mapCache struct {
+	mux sync.Mutex
+	dt  map[string]bool
+}
 
-// Crawl uses fetcher to recursively crawl
-// pages starting with url, to a maximum of depth.
-func Crawl(url string, depth int, fetcher Fetcher) {
-	// TODO: Fetch URLs in parallel.
-	// TODO: Don't fetch the same URL twice.
-	// This implementation doesn't do either:
+func (cache *mapCache) setVisited(name string) bool {
+	cache.mux.Lock()
+	defer cache.mux.Unlock()
+
+	if cache.dt[name] {
+		return true
+	}
+
+	cache.dt[name] = true
+
+	return false
+}
+
+var cacheInstance = mapCache{dt: make(map[string]bool)}
+
+func crawlInner(url string, depth int, fetcher Fetcher, wg *sync.WaitGroup) {
+	defer wg.Done()
 	if depth <= 0 {
 		return
 	}
+
+	if cacheInstance.setVisited(url) {
+		return
+	}
+
 	body, urls, err := fetcher.Fetch(url)
 	if err != nil {
 		fmt.Println(err)
@@ -26,9 +47,22 @@ func Crawl(url string, depth int, fetcher Fetcher) {
 	}
 	fmt.Printf("found: %s %q\n", url, body)
 	for _, u := range urls {
-		Crawl(u, depth-1, fetcher)
+		wg.Add(1)
+		go crawlInner(u, depth-1, fetcher, wg)
 	}
 	return
+}
+
+// Crawl uses fetcher to recursively crawl
+// pages starting with url, to a maximum of depth.
+func Crawl(url string, depth int, fetcher Fetcher) {
+	waitGroup := &sync.WaitGroup{}
+
+	waitGroup.Add(1)
+
+	go crawlInner(url, depth, fetcher, waitGroup)
+
+	waitGroup.Wait()
 }
 
 func main() {
