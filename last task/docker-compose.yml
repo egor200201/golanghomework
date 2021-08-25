@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: test
+
+  bot:
+    image: exper
+    environment:
+      CREATE_TABLE: "yes"
+      DB_SWITCH: "on"
+      TOKEN: 1990027676:AAGkEFcn1FDDPtKY0iBI9zGNuyYH7tTipLs
+      HOST: db
+      PORT: 5432
+      USER: postgres
+      PASSWORD: test
+      DBNAME: postgres
+      SSLMODE: disable
